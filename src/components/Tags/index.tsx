@@ -1,22 +1,29 @@
 import React, { ChangeEvent, useState } from "react";
+import Color from "../../types/Color";
 import Tag from "./Tag";
 
 interface Tag {
-    text: string,
-    color: string
+    text: string;
+    color: Color;
 }
 
-const predefinedColors: string[] = [
-    '#FF5733', '#33FF57', '#3357FF', '#FF33A8', '#A833FF',
-    '#33FFF4', '#FFD433', '#FF3380', '#33FFB8', '#8D33FF',
-    '#FF5733', '#33FF57', '#3357FF', '#FF33A8', '#A833FF',
-    '#33FFF4', '#FFD433', '#FF3380', '#33FFB8', '#8D33FF'
+const predefinedColors: Color[] = [
+    { background: "#FFCDD2", textBorderColor: "#B71C1C" },
+    { background: "#F8BBD0", textBorderColor: "#880E4F" },
+    { background: "#E1BEE7", textBorderColor: "#4A148C" },
+    { background: "#D1C4E9", textBorderColor: "#311B92" },
+    { background: "#C5CAE9", textBorderColor: "#1A237E" },
+    { background: "#BBDEFB", textBorderColor: "#0D47A1" },
+    { background: "#B3E5FC", textBorderColor: "#01579B" },
+    { background: "#B2EBF2", textBorderColor: "#006064" },
+    { background: "#B2DFDB", textBorderColor: "#004D40" },
+    { background: "#C8E6C9", textBorderColor: "#1B5E20" }
 ];
 
 const Tags: React.FC = () => {
     const [tags, setTags] = useState<Tag[]>([]);
     const [text, setText] = useState<string>('');
-    const [availableColors, setAvailableColors] = useState<string[]>([...predefinedColors]);
+    const [availableColors, setAvailableColors] = useState<Color[]>([...predefinedColors]);
 
     
     const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +64,9 @@ const Tags: React.FC = () => {
           </div>
           <div className="text-left flex flex-wrap gap-2">
                 {tags.map((tag, index) => (
-                    <Tag key={index} color={tag.color}>{tag.text}</Tag>
+                    <Tag key={index} color={tag.color}>
+                        {tag.text}
+                    </Tag>
                 ))}
           </div>
         </section>
