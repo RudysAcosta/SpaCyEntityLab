@@ -14,7 +14,6 @@ function App() {
       <main className="flex-grow">
         <Tags />
         <TextArea />
-        
       </main>
       <footer className="bg-gray-800 text-white p-4 text-center">
         © 2024 Mi Página.

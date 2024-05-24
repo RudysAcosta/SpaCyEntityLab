@@ -22,7 +22,6 @@ const Tags: React.FC = () => {
     const [text, setText] = useState<string>('');
     const [availableColors, setAvailableColors] = useState<Color[]>([...predefinedColors]);
 
-    
     const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value);
     };
@@ -41,7 +40,6 @@ const Tags: React.FC = () => {
             setAvailableColors(newAvailableColors)
             setText('');
         }
-        
     }
 
     return (
@@ -54,7 +52,7 @@ const Tags: React.FC = () => {
                 value={text}
                 onChange={handleTextChange}
                 placeholder="Add a tag"
-                className="tag-input"
+                className="tag-input px-4"
                 />
               <button onClick={handleAddTag} className="bg-green-500 p-2 p-y rounded-md">Add</button>
             </div>

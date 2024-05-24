@@ -28,7 +28,6 @@ const TextArea: React.FC = () => {
                 element.style.background = token.tag.color.background;
                 element.style.color = token.tag.color.textBorderColor; 
                 element.style.border = `1px solid ${token.tag.color.textBorderColor}`; 
-                // element.classList.add(token.tag.class);
             }
         }
       });
@@ -51,8 +50,15 @@ const TextArea: React.FC = () => {
 
   const handleCheckboxChange = () => {
     setIsEditable(!isEditable);
+    
+    if(tokens) {
+        setTokens([]);
+    }
+
     if (!isEditable) {
       setTextList(text.split(' '));
+    } else {
+      setTokens([]);
     }
   };
 
@@ -64,7 +70,6 @@ const TextArea: React.FC = () => {
     setTokens((prevTokens) => prevTokens.filter((token) => token.index !== index));
     let element = contentRef.current?.querySelector(`#word-${index}`);
     element.style.cssText = '';
-    // como elimino la etiqueta style 
  }
 
   const addToken = (index: number) => {
