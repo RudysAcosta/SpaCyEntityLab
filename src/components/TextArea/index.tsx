@@ -36,7 +36,6 @@ const TextArea: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(selectedTag)
     updateContentWithHighlights();
   }, [textList, tokens]);
 
@@ -61,6 +60,13 @@ const TextArea: React.FC = () => {
     return existingTokens.some(token => token.index === index);
   };
 
+  const remoteToken = (index: number) => {
+    setTokens((prevTokens) => prevTokens.filter((token) => token.index !== index));
+    let element = contentRef.current?.querySelector(`#word-${index}`);
+    element.style.cssText = '';
+    // como elimino la etiqueta style 
+ }
+
   const addToken = (index: number) => {
     if (selectedTag) {
       const newToken: Token = {
@@ -72,13 +78,15 @@ const TextArea: React.FC = () => {
     } else {
         confirm("Add a tag")
     }
-  }
+  };
 
   const handleWordClick = (index: number, ) => {
     if (!isTokenDuplicate(index, tokens)) {
         addToken(index)
+    } else {
+        remoteToken(index)
     }
-  }
+  };
 
   return (
     <div className="p-4">
@@ -112,7 +120,11 @@ const TextArea: React.FC = () => {
         >
           {
            textList.map((word, index) => (
-             <span className="word" id={`word-${index}`} key={index} onClick={() => handleWordClick(index)} >
+             <span 
+             className="word" 
+             id={`word-${index}`} 
+             key={index} 
+             onClick={() => handleWordClick(index)} >
                 {word}{' '}
              </span>   
            ))

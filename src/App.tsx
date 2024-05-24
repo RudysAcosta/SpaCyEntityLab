@@ -17,7 +17,7 @@ function App() {
         
       </main>
       <footer className="bg-gray-800 text-white p-4 text-center">
-        © 2024 Mi Página. Todos los derechos reservados.
+        © 2024 Mi Página.
       </footer>
     </div>
     </TagProvider>
