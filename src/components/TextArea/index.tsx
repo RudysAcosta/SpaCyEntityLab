@@ -1,23 +1,21 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useTagContext } from '../../context/TagContext';
 
-interface Tag {
-    class: string
-}
+import TagType from '../../types/Tag';
 
 interface Token {
   index: number;
-  tag: Tag;
+  tag: TagType;
 }
 
 const TextArea: React.FC = () => {
+  const { selectedTag } = useTagContext();
   const [tokens, setTokens] = useState<Token[]>([]);
   const [text, setText] = useState<string>('');
   const [isEditable, setIsEditable] = useState<boolean>(true);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [textList, setTextList] = useState<string[]>([]);
-
-  let tag: Tag = {class: 'bg-pink-500'}
 
   // Función para actualizar el contenido del div con tokens resaltados
   const updateContentWithHighlights = () => {
@@ -27,7 +25,10 @@ const TextArea: React.FC = () => {
         if (htmlContent[token.index]) {
             let element = contentRef.current?.querySelector(`#word-${token.index}`);
             if(element) {
-                element.classList.add(token.tag.class);
+                element.style.background = token.tag.color.background;
+                element.style.color = token.tag.color.textBorderColor; 
+                element.style.border = `1px solid ${token.tag.color.textBorderColor}`; 
+                // element.classList.add(token.tag.class);
             }
         }
       });
@@ -35,6 +36,7 @@ const TextArea: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log(selectedTag)
     updateContentWithHighlights();
   }, [textList, tokens]);
 
@@ -60,12 +62,16 @@ const TextArea: React.FC = () => {
   };
 
   const addToken = (index: number) => {
-    const newToken: Token = {
-      index: index,
-      tag: tag
-    };
-
-    setTokens((prevTokens) => [...prevTokens, newToken]);
+    if (selectedTag) {
+      const newToken: Token = {
+        index: index,
+        tag: selectedTag
+      };
+      
+      setTokens((prevTokens) => [...prevTokens, newToken]);
+    } else {
+        confirm("Add a tag")
+    }
   }
 
   const handleWordClick = (index: number, ) => {

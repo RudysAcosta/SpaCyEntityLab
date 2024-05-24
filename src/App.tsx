@@ -1,10 +1,12 @@
 import React, { useState } from "react"
 import Tags from "./components/Tags"
 import TextArea from "./components/TextArea"
+import { TagProvider } from "./context/TagContext"
 
 function App() {
 
   return (
+    <TagProvider>
     <div className="min-h-screen flex flex-col px-8">
       <header className="bg-blue-600 text-white p-4">
         <h1 className="text-2xl font-bold text-left">Doc for trainig model in spacy</h1>
@@ -18,6 +20,7 @@ function App() {
         © 2024 Mi Página. Todos los derechos reservados.
       </footer>
     </div>
+    </TagProvider>
   )
 }
 

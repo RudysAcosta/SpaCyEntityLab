@@ -1,11 +1,8 @@
 import React, { ChangeEvent, useState } from "react";
 import Color from "../../types/Color";
+import TagType from "../../types/Tag";
 import Tag from "./Tag";
 
-interface Tag {
-    text: string;
-    color: Color;
-}
 
 const predefinedColors: Color[] = [
     { background: "#FFCDD2", textBorderColor: "#B71C1C" },
@@ -21,7 +18,7 @@ const predefinedColors: Color[] = [
 ];
 
 const Tags: React.FC = () => {
-    const [tags, setTags] = useState<Tag[]>([]);
+    const [tags, setTags] = useState<TagType[]>([]);
     const [text, setText] = useState<string>('');
     const [availableColors, setAvailableColors] = useState<Color[]>([...predefinedColors]);
 
@@ -34,7 +31,7 @@ const Tags: React.FC = () => {
         if (text.trim() !== '' && availableColors.length > 0 ) {
             const colorIndex = Math.floor(Math.random() * availableColors.length);
             const selectColor = availableColors[colorIndex];
-            const tag: Tag = {text: text.trim(), color: selectColor};
+            const tag: TagType = {text: text.trim(), color: selectColor};
 
             //Remove color from predefinedcolors
             const newAvailableColors = [...availableColors]
