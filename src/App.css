@@ -14,3 +14,8 @@ code {
   white-space: pre-wrap;
   display: block;
 }
+
+
+.selected-tag {
+  border: 2px solid #383cb9; /* Ejemplo de estilo para el estado seleccionado */
+}

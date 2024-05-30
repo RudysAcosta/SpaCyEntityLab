@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Color from "../../types/Color";
 import { useTagContext } from "../../context/TagContext";
 import TagType from "../../types/Tag";
@@ -10,7 +10,20 @@ interface TagsProps {
 }
 
 const Tag: React.FC<TagsProps> = ({color, children}) => {
-    const { setSelectedTag } = useTagContext();
+
+    const { selectedTag, setSelectedTag} = useTagContext();    
+
+
+    // useEffect(() => {
+    //     console.log('start use effect') 
+    //     if (children == selectedTag?.text) {
+    //         console.log("si es el tag")
+    //     } else {
+    //         console.log("no es el tag")
+    //     }
+    //     console.log('end use effect')
+
+    // },[children, selectedTag])
 
     const handleChange = () => {
         const tag: TagType = {
@@ -21,17 +34,26 @@ const Tag: React.FC<TagsProps> = ({color, children}) => {
         setSelectedTag(tag);
     };
 
+    const handleClick = () => {
+        const tag: TagType = {
+            color: color,
+            text: children as string,
+        };
+
+        setSelectedTag(tag);
+    }
+
+    const isSelected = children == selectedTag?.text;
+
     return (
-        <span style={{ backgroundColor: color.background, borderColor:color.textBorderColor, color:color.textBorderColor }} 
-        className="flex items-center gap-1 uppercase  text-md font-medium me-2 px-2.5 py-0.5 rounded border ">
-            <input
-            onChange={handleChange} 
-            id="bordered-radio-1" 
-            type="radio" 
-            name="bordered-radio" 
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-            { children }
-        </span>
+        <div className="mr-2 mb-2">
+            <span 
+                onClick={handleClick} 
+                style={{ backgroundColor: color.background, color:color.textBorderColor }} 
+                className={`inline-block bg-green-200 opacity-90 text-green-800 text-xs font-semibold rounded-full px-2 py-1 cursor-pointer ${isSelected ? 'selected-tag' : ''}`}>
+            { children?.toString().toLocaleUpperCase() }
+            </span>
+        </div>
     );
 };
 

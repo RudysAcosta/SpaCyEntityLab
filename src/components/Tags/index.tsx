@@ -43,28 +43,27 @@ const Tags: React.FC = () => {
     }
 
     return (
-        <section className="bg-blue-200 px-8 py-2">
-          <div className="flex justify-between items-center p-2">
-            <h2 className="text-xl font-semibold">Tags</h2>
-            <div className="flex gap-2">
-              <input 
-                type="text"
-                value={text}
-                onChange={handleTextChange}
-                placeholder="Add a tag"
-                className="tag-input px-4"
-                />
-              <button onClick={handleAddTag} className="bg-green-500 p-2 p-y rounded-md">Add</button>
-            </div>
-          </div>
-          <div className="text-left flex flex-wrap gap-2">
-                {tags.map((tag, index) => (
-                    <Tag key={index} color={tag.color}>
-                        {tag.text}
-                    </Tag>
-                ))}
-          </div>
-        </section>
+      <div className="flex flex-col text-right">
+        <div>
+          <input 
+            type="text"
+            value={text} 
+            onChange={handleTextChange}
+            placeholder="Add a tag" 
+            className="border border-gray-300 rounded px-2 py-1 mr-2" />
+          <button 
+            onClick={handleAddTag}
+            className="bg-blue-500 text-white rounded px-4 py-1">Add</button>
+        </div>
+        <div className="flex flex-wrap items-center mb-4">
+
+          {tags.map((tag, index) => (
+            <Tag key={index} color={tag.color}>
+              {tag.text}
+            </Tag>
+          ))}
+        </div>
+      </div>
     );
 };
 
