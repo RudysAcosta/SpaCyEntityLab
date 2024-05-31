@@ -29,10 +29,6 @@ const Tokens: React.FC = () => {
                             tag={token.tag}
                             color={token.tag.color}
                             />
-                        // <span 
-                        //     key={index} 
-                        //     tag={token.tag}
-                        //     className="inline-block bg-green-200 text-green-800 text-xs font-semibold rounded-full px-2 py-1 mr-2 mb-2"> = NCF</span>
                     })}
                 </div>
             </div>

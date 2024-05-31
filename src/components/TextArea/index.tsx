@@ -117,7 +117,7 @@ const TextArea: React.FC = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="py-4">
       <div className="flex items-center mb-4">
         <input
           id="checked-checkbox"
@@ -142,7 +142,7 @@ const TextArea: React.FC = () => {
       ) : (
         <div
           ref={contentRef}
-          className="w-full border border-gray-300 bg-gray-50 rounded p-2 h-40"
+          className="w-full border border-gray-300 bg-gray-50 rounded py-2"
           style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}
         >
           {textList.map((word, index) => (

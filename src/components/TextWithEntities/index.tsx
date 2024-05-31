@@ -10,14 +10,12 @@ const TextWithEntities: React.FC = () => {
     });
 
     return (
-        <div className="w-full px-8 py-8 bg-slate-800 text-orange-400">
-            <div className="json-container">
-                <pre>
-                    <code>
+        <div>
+            <pre className="bg-gray-800 text-white p-4 rounded-lg overflow-auto">
+                <code>
                         {JSON.stringify(entities, null, 2)}
-                    </code>
-                </pre>
-            </div>
+                </code>
+            </pre>
         </div>
     );
 };
