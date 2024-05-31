@@ -4,6 +4,7 @@ import { useTextAreaContext } from '../../context/TextAreaContext';
 import TokenType from '../../types/TokenType';
 import EntityType from '../../types/EntityType';
 import EntitiesType from '../../types/EntitiesType';
+import TagType from '../../types/Tag';
 
 const TextArea: React.FC = () => {
   const { selectedTag } = useTagContext();
@@ -50,10 +51,13 @@ const TextArea: React.FC = () => {
   const makeEntity = (token: TokenType): EntityType | null => {
     if (!token) return null;
 
+    console.log('makeEntity')
+    console.log(token)
+
     return {
-      label: token.tag.text.toUpperCase(),
       start: token.range[0],
-      end: token.range[1]
+      end: token.range[1],
+      tag: token.tag
     };
   };
 
@@ -133,17 +137,16 @@ const TextArea: React.FC = () => {
         <textarea
           ref={textAreaRef}
           id="tokenizable-textarea"
-          rows={5}
           value={text}
           onChange={handleInput}
           placeholder="Select text to tokenize"
-          className="border p-2 w-full h-40 overflow-y-auto"
+          className="w-full border border-gray-300 rounded p-2 h-40"
           style={{ whiteSpace: 'pre-wrap' }}
         />
       ) : (
         <div
           ref={contentRef}
-          className="border p-2 w-full h-40 overflow-y-auto bg-gray-100"
+          className="w-full border border-gray-300 bg-gray-50 rounded p-2 h-40"
           style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}
         >
           {textList.map((word, index) => (
@@ -158,16 +161,19 @@ const TextArea: React.FC = () => {
           ))}
         </div>
       )}
-
-      <div className="mt-4">
-        <h3>Tokens:</h3>
-        <div>
-        {tokens.map((token, index) => (
-            <span key={index} className="p-2 m-1 bg-gray-200 rounded">{textList[token.index] + ` = ` + token.tag.text.toLocaleUpperCase() }</span>
-        ))}
-        </div>
       </div>
-    </div>
+
+
+
+    //   <div className="mt-4">
+    //     <h3>Tokens:</h3>
+    //     <div>
+    //     {tokens.map((token, index) => (
+    //         <span key={index} className="p-2 m-1 bg-gray-200 rounded">{textList[token.index] + ` = ` + token.tag.text.toLocaleUpperCase() }</span>
+    //     ))}
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 

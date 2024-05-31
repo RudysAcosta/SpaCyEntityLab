@@ -1,8 +1,7 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Color from "../../types/Color";
 import { useTagContext } from "../../context/TagContext";
 import TagType from "../../types/Tag";
-
 
 interface TagsProps {
     color: Color;
@@ -12,18 +11,6 @@ interface TagsProps {
 const Tag: React.FC<TagsProps> = ({color, children}) => {
 
     const { selectedTag, setSelectedTag} = useTagContext();    
-
-
-    // useEffect(() => {
-    //     console.log('start use effect') 
-    //     if (children == selectedTag?.text) {
-    //         console.log("si es el tag")
-    //     } else {
-    //         console.log("no es el tag")
-    //     }
-    //     console.log('end use effect')
-
-    // },[children, selectedTag])
 
     const handleChange = () => {
         const tag: TagType = {
