@@ -23,8 +23,6 @@ const Tokens: React.FC = () => {
                 <h2 className="text-xl font-semibold mb-2">Tokens:</h2>
                 <div className="flex flex-wrap">
                     {tokens.map((token, index) => {
-                        console.log(token);
-
                         return <TagToken 
                             key={index}
                             text={getText(token.start, token.end)}

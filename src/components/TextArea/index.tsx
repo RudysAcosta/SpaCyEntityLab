@@ -50,10 +50,6 @@ const TextArea: React.FC = () => {
 
   const makeEntity = (token: TokenType): EntityType | null => {
     if (!token) return null;
-
-    console.log('makeEntity')
-    console.log(token)
-
     return {
       start: token.range[0],
       end: token.range[1],
