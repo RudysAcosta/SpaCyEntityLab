@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTextAreaContext } from "../../context/TextAreaContext";
 import TagToken from "../TagToken";
 
@@ -6,11 +6,6 @@ const Tokens: React.FC = () => {
     const { entities } = useTextAreaContext();
     const tokens = entities?.entities || [];
     const text = entities?.text || '';
-
-    useEffect(() => {
-        console.log(entities)
-        console.log(tokens)
-    }, [entities]);
 
     const getText = (start: number, end: number): string => {
         return text.substring(start, end)

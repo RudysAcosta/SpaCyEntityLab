@@ -12,15 +12,6 @@ const Tag: React.FC<TagsProps> = ({color, children}) => {
 
     const { selectedTag, setSelectedTag} = useTagContext();    
 
-    const handleChange = () => {
-        const tag: TagType = {
-            color: color,
-            text: children as string,
-        };
-
-        setSelectedTag(tag);
-    };
-
     const handleClick = () => {
         const tag: TagType = {
             color: color,

@@ -4,7 +4,6 @@ import { useTextAreaContext } from '../../context/TextAreaContext';
 import TokenType from '../../types/TokenType';
 import EntityType from '../../types/EntityType';
 import EntitiesType from '../../types/EntitiesType';
-import TagType from '../../types/Tag';
 
 const TextArea: React.FC = () => {
   const { selectedTag } = useTagContext();
@@ -26,7 +25,7 @@ const TextArea: React.FC = () => {
           entities.push(entity);
         }
         if (htmlContent[token.index]) {
-          const element = contentRef.current?.querySelector(`#word-${token.index}`);
+          const element = contentRef.current?.querySelector<HTMLSpanElement>(`#word-${token.index}`);
           if (element) {
             element.style.background = token.tag.color.background;
             element.style.color = token.tag.color.textBorderColor;
@@ -77,7 +76,7 @@ const TextArea: React.FC = () => {
 
   const removeToken = (index: number) => {
     setTokens(prevTokens => prevTokens.filter(token => token.index !== index));
-    const element = contentRef.current?.querySelector(`#word-${index}`);
+    const element = contentRef.current?.querySelector<HTMLSpanElement>(`#word-${index}`);
     if (element) {
       element.style.cssText = '';
     }
