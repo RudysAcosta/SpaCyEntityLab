@@ -37,7 +37,7 @@ FROM nginx:alpine AS prod
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Copia la configuración de Nginx para producción
-COPY nginx/conf.prod.conf /etc/nginx/conf.d/default.conf
+COPY nginx/conf.prod.conf /etc/nginx/conf.d/spacyentitylab.conf
 
 # Exponer el puerto para producción
 EXPOSE 8081  
